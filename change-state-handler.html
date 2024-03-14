@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title> state dengan handler </title>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body> 
+    <div id="app"></div>
+    <script type="text/babel"> 
+
+        //import React, { Component } from 'react';
+        const {Component} = React;
+
+        class UserComponent extends Component{
+            constructor(props) {
+                super(props);
+                this.state = {
+                    user: {
+                        name: 'Jhon',
+                        age: 30
+                    }
+                };
+            }
+            UpdateName = (newName) => {
+                this.setState(prevState => ({
+                    user: {
+                        ...prevState.user,
+                        name: newName
+                    }
+                }));
+            }
+            UpdateAge = (newAge) => {
+                this.setState(prevState => ({
+                    user: {
+                        ...prevState.user,
+                        age: newAge
+                    }
+                }));
+            }
+            render() {
+                return (
+                    <div>
+                        <h2>User Information:</h2>
+                        <p>Name: {this.state.user.name}</p>
+                        <p>Age: {this.state.user.age}</p>
+                        <button onClick={()=> this.updateName('Jane')}>Update Name</button>
+                        <button onClick={()=> this.updateAge(36)}>Update Age</button>
+                    </div>
+                );
+            }
+        }
+        //export default UserComponent;
+        ReactDOM.render(< UserComponent/>, document.getElementById("app"));
+    </script>
+</body>
+</html>
